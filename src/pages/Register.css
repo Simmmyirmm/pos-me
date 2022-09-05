@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap%27");
+
+.loginphoto {
+  width: 10%;
+  display: block;
+  margin-bottom: 1rem;
+}
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.input1 {
+  border: 2px solid #fcd87c;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  /* padding: 4rem 6rem; */
+  width: 20rem;
+  height: 8rem;
+  background-color: #fffcf5;
+  overflow: scroll;
+  resize: none;
+}
+
+.input1::placeholder {
+  color: black;
+  text-align: left;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.input2 {
+  background-color: #fcd87c;
+  margin-bottom: 1rem;
+  border-radius: 100px;
+  border: none;
+  padding: 1rem 2rem;
+  width: 20rem;
+}
+
+.input2:focus:placeholder {
+  color: transparent;
+  text-align: center;
+  font-style: italic;
+  font-weight: bold;
+}
+.button {
+  color: white;
+  background-color: #283b7a;
+  border-radius: 100px;
+  border: none;
+  padding: 1rem 6rem;
+  font-style: italic;
+  font-weight: bold;
+}
+.main {
+  padding: 2.4rem 0;
+}
+
+.label {
+  vertical-align: middle;
+}
