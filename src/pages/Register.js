@@ -8,9 +8,18 @@ const Register = () => {
     <div className={styles.main}>
       <div className={styles.center}>
         <img className="loginphoto" src={photo} alt="kuy"></img>
+        <form className={styles.input}>
+          <label className={styles.label_input} htmlFor="name">
+            ชื่อจริง
+          </label>
+          <input type="text" id="name" />
+        </form>
+
         <div className={styles.input}>
-          <label htmlFor="name">ชื่อจริง</label>
-          <input type="text" />
+          <label className={styles.label_input} htmlFor="lastname">
+            นามสกุล
+          </label>
+          <input type="text" id="lastname" />
         </div>
 
         <Link to="/Login" className="button">

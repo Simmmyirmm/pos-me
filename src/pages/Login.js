@@ -1,32 +1,41 @@
 import React from "react";
 import styles from "./Login.module.css";
-import { useRef } from "react";
+import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
+import Backdrop from "./Backdrop";
+import ModalPopup from "../components/ModalPopup";
 
 const Login = function (props) {
+  const [wrongLogin, setWrongLogin] = useState(false);
+  const [showModal, setShowModal] = useState();
   const usernameRef = useRef();
   const passwordRef = useRef();
+
+  const closeOverlay = function () {
+    setWrongLogin(false);
+  };
 
   const submitHandler = async function (e) {
     e.preventDefault();
 
     const username_input = usernameRef.current.value;
     const password_input = passwordRef.current.value;
-
-    const response = await fetch("http://167.71.195.231:2095/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: username_input,
-        password: password_input,
-      }),
-    });
-    const data = await response.json();
-    console.log(data);
-
-    props.getToken(data);
+    try {
+      const response = await fetch("http://167.71.195.231:3000/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: username_input,
+          password: password_input,
+        }),
+      });
+      const data = await response.json();
+      console.log(data);
+    } catch (err) {
+      setWrongLogin(true);
+    }
   };
 
   return (
@@ -54,12 +63,20 @@ const Login = function (props) {
             <button className={`${styles.block} ${styles.login_btn}`}>
               เข้าสู่ระบบ
             </button>
-            <Link to="/Register">
-              <button className={`${styles.block} ${styles.register_btn}`}>
-                ลงทะเบียน
-              </button>
-            </Link>
           </form>
+          {wrongLogin && <Backdrop close={closeOverlay} />}
+          {/* {wrongLogin && (
+            <ModalPopup
+              show={wrongLogin}
+              close={closeOverlay}
+              onHide={closeOverlay}
+            />
+          )} */}
+          <Link to="/Register">
+            <button className={`${styles.block} ${styles.register_btn}`}>
+              ลงทะเบียน
+            </button>
+          </Link>
         </div>
       </section>
     </div>

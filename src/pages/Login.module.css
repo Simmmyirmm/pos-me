@@ -52,8 +52,20 @@
   left: 50%;
   transform: translate(-50%, -50%); */
 }
-
+/* 
 button {
+  font-size: 1.6rem;
+  margin-bottom: 1.6rem;
+  border-radius: 100px;
+  width: 35rem;
+  height: 6.4rem;
+} */
+
+.login_btn {
+  border: none;
+  background-color: #ffb923;
+  color: #fff;
+
   font-size: 1.6rem;
   margin-bottom: 1.6rem;
   border-radius: 100px;
@@ -61,14 +73,14 @@ button {
   height: 6.4rem;
 }
 
-.login_btn {
-  border: none;
-  background-color: #ffb923;
-  color: #fff;
-}
-
 .register_btn {
   border: none;
   background-color: #283b7a;
   color: #fff;
+
+  font-size: 1.6rem;
+  margin-bottom: 1.6rem;
+  border-radius: 100px;
+  width: 35rem;
+  height: 6.4rem;
 }
