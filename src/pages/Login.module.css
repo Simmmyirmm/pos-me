@@ -84,3 +84,7 @@ button {
   width: 35rem;
   height: 6.4rem;
 }
+
+a {
+  text-decoration: none !important;
+}

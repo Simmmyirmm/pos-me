@@ -58,6 +58,7 @@ const Login = function (props) {
               className={`${styles.block} ${styles.input_field}`}
               cols="40"
               placeholder="password"
+              type="password"
               ref={passwordRef}
             />
             <button className={`${styles.block} ${styles.login_btn}`}>

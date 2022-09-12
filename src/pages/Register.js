@@ -120,7 +120,7 @@ const Register = function (props) {
             <input
               className={styles.input2}
               id="email"
-              type="text"
+              type="email"
               placeholder="email"
               ref={emailref}
             ></input>
@@ -159,7 +159,7 @@ const Register = function (props) {
             <input
               className={styles.input2}
               id="password"
-              type="text"
+              type="password"
               placeholder="password"
             ></input>
           </div>
@@ -171,7 +171,7 @@ const Register = function (props) {
             <input
               className={styles.input2}
               id="confirmpassword"
-              type="text"
+              type="password"
               placeholder="confirm password"
               ref={passwordref}
             ></input>
