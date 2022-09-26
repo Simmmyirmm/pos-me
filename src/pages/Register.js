@@ -55,9 +55,11 @@ const checkPasswords = (e) => {
     const pp_input = ppref.current.value;
     const username_input = usernameref.current.value;
     const password_input = passwordref.current.value;
+    const cpassword_input = cpasswordref.current.value;
 
     
     try {
+      if(cpassword_input=== password_input){
       const response = await fetch("http://167.71.195.231:3000/auth/register", {
         method: "POST",
         headers: {
@@ -79,6 +81,7 @@ const checkPasswords = (e) => {
       if (response.ok) {
         navigate("/login");
       }
+    }
     } catch (err) {
       console.log(err);
     }
