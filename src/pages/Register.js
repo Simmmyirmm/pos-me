@@ -2,7 +2,7 @@ import photo from "../photo/lock.png";
 import React from "react";
 import styles from "./Register.module.css";
 import { useNavigate } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useRef, useState ,useEffect} from "react";
 const Register = function (props) {
   const navigate = useNavigate();
   const fnameref = useRef();
@@ -12,7 +12,37 @@ const Register = function (props) {
   const emailref = useRef();
   const ppref = useRef();
   const usernameref = useRef();
+  const cpasswordref = useRef();
   const passwordref = useRef();
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
+  const [cPasswordClass, setCPasswordClass] = useState('form-control');
+  const [isCPasswordDirty, setIsCPasswordDirty] = useState(false);
+
+  useEffect(() => {
+    if (isCPasswordDirty) {
+        if (passwordref.current.value === cpasswordref.current.value) {
+            setShowErrorMessage(false);
+            setCPasswordClass('form-control is-valid')
+        } else {
+            setShowErrorMessage(true)
+            setCPasswordClass('form-control is-invalid')
+        }
+    }
+}, [isCPasswordDirty])
+
+const checkPasswords = (e) => {
+    setIsCPasswordDirty(true);
+    if (isCPasswordDirty) {
+        if (passwordref.current.value === cpasswordref.current.value) {
+            setShowErrorMessage(false);
+            setCPasswordClass('form-control is-valid')
+        } else {
+            setShowErrorMessage(true)
+            setCPasswordClass('form-control is-invalid')
+        }
+    }
+
+}
 
   const submitHandler = async function (e) {
     e.preventDefault();
@@ -26,6 +56,7 @@ const Register = function (props) {
     const username_input = usernameref.current.value;
     const password_input = passwordref.current.value;
 
+    
     try {
       const response = await fetch("http://167.71.195.231:3000/auth/register", {
         method: "POST",
@@ -161,6 +192,7 @@ const Register = function (props) {
               id="password"
               type="password"
               placeholder="password"
+              ref={passwordref}
             ></input>
           </div>
 
@@ -173,10 +205,13 @@ const Register = function (props) {
               id="confirmpassword"
               type="password"
               placeholder="confirm password"
-              ref={passwordref}
+              ref={cpasswordref}
+              onChange={checkPasswords}
             ></input>
           </div>
 
+            {showErrorMessage && isCPasswordDirty ? <div> Passwords did not match </div> : ''}
+          
           {/* <p><label  className='label' for="bussinessinfo">ที่อยู่:</label></p>
         <textarea className='input1' id="bussinessinfo" name="w3review" rows="4" cols="50"></textarea> */}
           {/* <input className='input2'  type="text" placeholder='email' ></input>
