@@ -1,0 +1,85 @@
+.u_center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.section_payment {
+  background-color: #242e38;
+  height: 100vh;
+  font-family: "Bai Jamjuree", sans-serif;
+  color: white;
+
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  padding-top: 7.2rem;
+}
+
+.container {
+  max-width: 120rem;
+  height: 60rem;
+  /* width: 90rem; */
+}
+
+.total_box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 2.4rem;
+  margin-bottom: 4.8rem;
+}
+
+button {
+  display: block;
+  border: none;
+  cursor: pointer;
+  background-color: white;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+.cash_box {
+  width: 50rem;
+  margin-bottom: 2.4rem;
+  border-radius: 50px;
+  padding: 1.2rem 0;
+}
+
+.cash_img {
+  width: 30%;
+  height: 30%;
+}
+
+.cash_text {
+  font-size: 2.4rem;
+}
+
+.promptpay_box {
+  width: 50rem;
+  margin-bottom: 2.4rem;
+  border-radius: 50px;
+  padding: 1.2rem 0;
+}
+
+.promptpay_img {
+  width: 30%;
+  height: 30%;
+}
+
+.promptpay_text {
+  font-size: 2.4rem;
+}
+
+.other_box {
+  width: 50rem;
+  border-radius: 50px;
+  padding: 1.2rem 0;
+}
+
+.other_text {
+  font-size: 2.4rem;
+}
