@@ -4,7 +4,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PaymentMethod from "./pages/PaymentMethod";
-import Calculator from "./pages/calculator";
+import Calculator from "./pages/Calculator";
+import PromptpayQR from "./pages/PromptpayQR";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/payment_method" element={<PaymentMethod />} />
         <Route path="/calculator" element={<Calculator />} />
+        <Route path="/promptpay_qr" element={<PromptpayQR />} />
       </Routes>
     </BrowserRouter>
   );

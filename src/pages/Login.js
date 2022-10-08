@@ -26,6 +26,7 @@ const Login = function (props) {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({
           username: username_input,
           password: password_input,

@@ -2,7 +2,7 @@ import photo from "../photo/lock.png";
 import React from "react";
 import styles from "./Register.module.css";
 import { useNavigate } from "react-router-dom";
-import { useRef, useState ,useEffect} from "react";
+import { useRef, useState, useEffect } from "react";
 const Register = function (props) {
   const navigate = useNavigate();
   const fnameref = useRef();
@@ -15,34 +15,33 @@ const Register = function (props) {
   const cpasswordref = useRef();
   const passwordref = useRef();
   const [showErrorMessage, setShowErrorMessage] = useState(false);
-  const [cPasswordClass, setCPasswordClass] = useState('form-control');
+  const [cPasswordClass, setCPasswordClass] = useState("form-control");
   const [isCPasswordDirty, setIsCPasswordDirty] = useState(false);
 
   useEffect(() => {
     if (isCPasswordDirty) {
-        if (passwordref.current.value === cpasswordref.current.value) {
-            setShowErrorMessage(false);
-            setCPasswordClass('form-control is-valid')
-        } else {
-            setShowErrorMessage(true)
-            setCPasswordClass('form-control is-invalid')
-        }
+      if (passwordref.current.value === cpasswordref.current.value) {
+        setShowErrorMessage(false);
+        setCPasswordClass("form-control is-valid");
+      } else {
+        setShowErrorMessage(true);
+        setCPasswordClass("form-control is-invalid");
+      }
     }
-}, [isCPasswordDirty])
+  }, [isCPasswordDirty]);
 
-const checkPasswords = (e) => {
+  const checkPasswords = (e) => {
     setIsCPasswordDirty(true);
     if (isCPasswordDirty) {
-        if (passwordref.current.value === cpasswordref.current.value) {
-            setShowErrorMessage(false);
-            setCPasswordClass('form-control is-valid')
-        } else {
-            setShowErrorMessage(true)
-            setCPasswordClass('form-control is-invalid')
-        }
+      if (passwordref.current.value === cpasswordref.current.value) {
+        setShowErrorMessage(false);
+        setCPasswordClass("form-control is-valid");
+      } else {
+        setShowErrorMessage(true);
+        setCPasswordClass("form-control is-invalid");
+      }
     }
-
-}
+  };
 
   const submitHandler = async function (e) {
     e.preventDefault();
@@ -57,31 +56,34 @@ const checkPasswords = (e) => {
     const password_input = passwordref.current.value;
     const cpassword_input = cpasswordref.current.value;
 
-    
     try {
-      if(cpassword_input=== password_input){
-      const response = await fetch("http://167.71.195.231:3000/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: username_input,
-          password: password_input,
-          store_name: storename_input,
-          address: address_input,
-          f_name: firstname_input,
-          l_name: lastname_input,
-          email: email_input,
-          promptpay_number: pp_input,
-        }),
-      });
-      const data = await response.json();
-      console.log(data);
-      if (response.ok) {
-        navigate("/login");
+      if (cpassword_input === password_input) {
+        const response = await fetch(
+          "http://167.71.195.231:3000/auth/register",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+            body: JSON.stringify({
+              username: username_input,
+              password: password_input,
+              store_name: storename_input,
+              address: address_input,
+              f_name: firstname_input,
+              l_name: lastname_input,
+              email: email_input,
+              promptpay_number: pp_input,
+            }),
+          }
+        );
+        const data = await response.json();
+        console.log(data);
+        if (response.ok) {
+          navigate("/login");
+        }
       }
-    }
     } catch (err) {
       console.log(err);
     }
@@ -213,8 +215,12 @@ const checkPasswords = (e) => {
             ></input>
           </div>
 
-            {showErrorMessage && isCPasswordDirty ? <div> Passwords did not match </div> : ''}
-          
+          {showErrorMessage && isCPasswordDirty ? (
+            <div> Passwords did not match </div>
+          ) : (
+            ""
+          )}
+
           {/* <p><label  className='label' for="bussinessinfo">ที่อยู่:</label></p>
         <textarea className='input1' id="bussinessinfo" name="w3review" rows="4" cols="50"></textarea> */}
           {/* <input className='input2'  type="text" placeholder='email' ></input>
