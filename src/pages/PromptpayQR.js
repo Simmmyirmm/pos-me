@@ -1,14 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./PromptpayQR.module.css";
 import QRCode from "qrcode.react";
 import photo from "../photo/thai_qr.png";
 const generatePayload = require("promptpay-qr");
 
-const PromptpayQR = function () {
+const PromptpayQR = function (props) {
   const [phoneNumber, setPhoneNumber] = useState("012-345-6789");
   const [amount, setAmount] = useState(788);
   const [qrCode, setqrCode] = useState("sample");
-  const [showQR, setShowQR] = useState(false);
+  // const [showQR, setShowQR] = useState(false);
+  useEffect(() => {
+    const getData = async function () {
+      const response = await fetch("https://posme.fun:2096/auth/user");
+      const data = await response.json();
+      console.log(data);
+      const number = data.promptpay_number;
+      setPhoneNumber(number);
+    };
+    getData();
+    // setAmount(props.amount);
+    // setqrCode(generatePayload(phoneNumber, { amount }));
+  }, []);
 
   return (
     <div className={styles.section_QR}>
