@@ -5,22 +5,28 @@ import photo from "../photo/thai_qr.png";
 const generatePayload = require("promptpay-qr");
 
 const PromptpayQR = function (props) {
-  const [phoneNumber, setPhoneNumber] = useState("012-345-6789");
+  const [phoneNumber, setPhoneNumber] = useState("0987654321");
   const [amount, setAmount] = useState(788);
   const [qrCode, setqrCode] = useState("sample");
   // const [showQR, setShowQR] = useState(false);
   useEffect(() => {
     const getData = async function () {
-      const response = await fetch("https://posme.fun:2096/auth/user");
+      const response = await fetch("https://posme.fun:2096/auth/user",{
+        method:'GET',
+        credentials:'include'
+      });
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       const number = data.promptpay_number;
       setPhoneNumber(number);
     };
     getData();
     // setAmount(props.amount);
-    // setqrCode(generatePayload(phoneNumber, { amount }));
-  }, []);
+    setqrCode(generatePayload(phoneNumber, { amount }));
+  }, [phoneNumber,amount]);
+  
+  // console.log(phoneNumber)
+  // console.log(qrCode)
 
   return (
     <div className={styles.section_QR}>

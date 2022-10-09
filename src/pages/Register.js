@@ -59,7 +59,7 @@ const Register = function (props) {
     try {
       if (cpassword_input === password_input) {
         const response = await fetch(
-          "http://167.71.195.231:3000/auth/register",
+          "https://posme.fun:2096/auth/register",
           {
             method: "POST",
             headers: {

@@ -21,7 +21,7 @@ const Login = function (props) {
     const username_input = usernameRef.current.value;
     const password_input = passwordRef.current.value;
     try {
-      const response = await fetch("http://167.71.195.231:3000/auth/login", {
+      const response = await fetch("https://posme.fun:2096/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
