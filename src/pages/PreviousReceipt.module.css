@@ -49,6 +49,7 @@ p {
   color: black;
   padding: 1rem 1.6rem;
   border: 3px solid #fcd87c;
+  list-style: none;
 }
 
 .receipt_info_box {
