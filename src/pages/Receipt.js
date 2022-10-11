@@ -62,6 +62,8 @@ const Receipt = function (props) {
         <div className={styles.summaryprice}>
            <h3>เงินทอน(บาท):</h3>
            <h3>5</h3>
+
+           
         </div>
     
 
