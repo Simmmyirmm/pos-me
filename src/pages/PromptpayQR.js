@@ -11,9 +11,9 @@ const PromptpayQR = function (props) {
   // const [showQR, setShowQR] = useState(false);
   useEffect(() => {
     const getData = async function () {
-      const response = await fetch("https://posme.fun:2096/auth/user",{
-        method:'GET',
-        credentials:'include'
+      const response = await fetch("https://posme.fun:2096/auth/user", {
+        method: "GET",
+        credentials: "include",
       });
       const data = await response.json();
       // console.log(data);
@@ -21,10 +21,11 @@ const PromptpayQR = function (props) {
       setPhoneNumber(number);
     };
     getData();
+    console.log(phoneNumber);
     // setAmount(props.amount);
     setqrCode(generatePayload(phoneNumber, { amount }));
-  }, [phoneNumber,amount]);
-  
+  }, [phoneNumber, amount]);
+
   // console.log(phoneNumber)
   // console.log(qrCode)
 

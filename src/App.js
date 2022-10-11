@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PaymentMethod from "./pages/PaymentMethod";
 import Calculator from "./pages/Calculator";
 import PromptpayQR from "./pages/PromptpayQR";
+import PreviousReceipt from "./pages/PreviousReceipt";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/payment_method" element={<PaymentMethod />} />
         <Route path="/calculator" element={<Calculator />} />
         <Route path="/promptpay_qr" element={<PromptpayQR />} />
+        <Route path="/prev_receipt" element={<PreviousReceipt />} />
       </Routes>
     </BrowserRouter>
   );
