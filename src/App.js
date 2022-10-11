@@ -7,6 +7,7 @@ import PaymentMethod from "./pages/PaymentMethod";
 import Calculator from "./pages/Calculator";
 import PromptpayQR from "./pages/PromptpayQR";
 import PreviousReceipt from "./pages/PreviousReceipt";
+import Receipt from "./pages/Receipt";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/calculator" element={<Calculator />} />
         <Route path="/promptpay_qr" element={<PromptpayQR />} />
         <Route path="/prev_receipt" element={<PreviousReceipt />} />
+        <Route path="/receipt" element={<Receipt />} />
       </Routes>
     </BrowserRouter>
   );
