@@ -18,8 +18,10 @@ function App() {
         <Route path="/payment_method" element={<PaymentMethod />} />
         <Route path="/calculator" element={<Calculator />} />
         <Route path="/promptpay_qr" element={<PromptpayQR />} />
-        <Route path="/prev_receipt" element={<PreviousReceipt />} />
+        <Route path="/bills" element={<PreviousReceipt />} />
         <Route path="/receipt" element={<Receipt />} />
+        {/* <Route path='/bills/:receipt_no' element={<Receipt />} /> */}
+        {/* <Route path="/prev_receipt" element={<PreviousReceipt />} /> */}
       </Routes>
     </BrowserRouter>
   );
