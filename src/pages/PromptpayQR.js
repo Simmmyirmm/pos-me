@@ -26,7 +26,7 @@ const PromptpayQR = function (props) {
     // console.log(phoneNumber);
     setAmount(props.cash);
     setqrCode(generatePayload(phoneNumber, { amount }));
-  }, [phoneNumber, amount]);
+  }, [phoneNumber, amount, props.cash]);
 
   const genBill = async function (e) {
     e.preventDefault();
