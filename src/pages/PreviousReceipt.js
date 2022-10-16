@@ -1,13 +1,16 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams, useParams } from "react-router-dom";
 import styles from "./PreviousReceipt.module.css";
+import Receipt from "./Receipt";
 
 const PreviousReceipt = function () {
   const [allBills, setAllBills] = useState([]);
+  const params = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const receipt_no = searchParams.get("receipt_no");
   const navigate = useNavigate();
   const dateRef = useRef();
+  const id = params.id;
 
   useEffect(() => {
     const getAllBills = async function () {
@@ -23,16 +26,19 @@ const PreviousReceipt = function () {
     getAllBills();
   }, []);
 
-  useEffect(() => {
-    console.log(receipt_no);
-    if (receipt_no) {
-      navigate(`/bills/receipt_no=${receipt_no}`);
-    }
-  }, [navigate, receipt_no]);
+  // useEffect(() => {
+  //   console.log(receipt_no)
+  //   if (receipt_no) {
+  //     // navigate(`/bills/receipt_no=${receipt_no}`);
+  //     navigate(`/bills/id/${receipt_no}`);
+
+  //   }
+  // }, [navigate,receipt_no]);
 
   const gotoPost = function (id) {
     console.log(id);
-    setSearchParams({ receipt_no: id });
+    // setSearchParams({receipt_no: id})
+    navigate(`/bills/id/${id}`);
   };
 
   const genAllBills = function (allBills) {
@@ -41,11 +47,11 @@ const PreviousReceipt = function () {
         <li
           key={bill._id}
           className={styles.receipt_box}
-          onClick={gotoPost.bind(this, bill.receipt_no)}
+          onClick={gotoPost.bind(this, bill._id)}
         >
-          <p className={styles.receipt_no}>{bill.receipt_no}</p>
+          <p className={styles.receipt_no}>{bill._id}</p>
           <div className={styles.receipt_info_box}>
-            <p className={styles.date}>{bill.time}</p>
+            <p className={styles.date}>{bill.date}</p>
             <p className={styles.price}>{bill.cash}</p>
           </div>
         </li>
@@ -65,7 +71,7 @@ const PreviousReceipt = function () {
     const data = await response.json();
     setAllBills(data);
   };
-
+  // console.log(allBills);
   return (
     <section className={styles.section_prev_receipt}>
       <div className={styles.container}>
