@@ -11,6 +11,7 @@ const Receipt = function (props) {
   const location = useLocation();
   const [bill, setBill] = useState(false);
   const [qrCode, setqrCode] = useState("sample");
+  const [total, setTotal] = useState(0);
   const id = params.id;
 
   useEffect(() => {
@@ -41,10 +42,77 @@ const Receipt = function (props) {
     });
   };
 
+  const check = function () {
+    if (location.state?.payment_method === "cash") {
+      console.log("1");
+    } else {
+      console.log("2");
+    }
+  };
+
+  // console.log(location.state.payment_method)
+
   return (
     <Fragment>
       {!bill && <p>Loading</p>}
-      {bill && location.state.payment_method !== "QR" && (
+      {/* {check()} */}
+      {bill &&
+        location.state?.payment_method !== "QR" &&
+        location.state?.payment_method !== "cash" && (
+          <div className={styles.main}>
+            <p className={styles.header}>ใบเสร็จรับเงิน</p>
+            <div className={styles.toprightbox}>
+              <p>เลขที่ใบเสร็จ {bill.receipt_no} </p>
+              <p>
+                วันที่ {bill.date} {bill.time}
+              </p>
+            </div>
+            <br></br>
+            <hr></hr>
+            <h1 className={styles.storeinfo}>CAFE DOT COM</h1>
+            <h3 className={styles.storeinfo}>
+              Department of Computer Engineering
+            </h3>
+            <h3 className={styles.storeinfo}>Faculty of Engineering</h3>
+            <h3 className={styles.storeinfo}>Kasersart University</h3>
+            <h3 className={styles.storeinfo}>
+              TEL: {bill.user_id.promptpay_number}
+            </h3>
+            <h3 className={styles.storeinfo}>
+              หมายเลขประจำตัวผู้เสียภาษี {bill.user_id.tax_id}
+            </h3>
+            <br></br>
+            <hr></hr>
+            <div className={styles.table}>
+              <h2>รายการสินค้า</h2>
+              <h2>ราคาต่อหน่วย(บาท)</h2>
+              <h2>จำนวน</h2>
+              <h2>จำนวนเงิน(บาท)</h2>
+            </div>
+            <hr></hr>
+
+            {showItem()}
+            {/* <p className={styles.total_price}>ราคารวม: {}บาท</p> */}
+
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+
+            <div className={styles.box}>
+              <QRCode value={qrCode} size={150} />
+            </div>
+          </div>
+        )}
+      {bill && location.state?.payment_method === "cash" && (
         <div className={styles.main}>
           <p className={styles.header}>ใบเสร็จรับเงิน</p>
           <div className={styles.toprightbox}>
@@ -75,6 +143,8 @@ const Receipt = function (props) {
             <h2>จำนวน</h2>
             <h2>จำนวนเงิน(บาท)</h2>
           </div>
+          {/* <p className={styles.total_price}>ราคารวม: </p> */}
+
           <hr></hr>
           {/* <div className={styles.table}>
            <h4 className={styles.merchname}>น้ำเเร่เพอร่า</h4>
@@ -113,16 +183,16 @@ const Receipt = function (props) {
             <div>
               <div className={styles.summaryprice}>
                 <h3>เงินสด(บาท):</h3>
-                <h3>{location.state.money}</h3>
+                <h3>{location.state?.money}</h3>
               </div>
               <div className={styles.summaryprice}>
                 <h3>ราคารวม(บาท):</h3>
-                <h3>{location.state.total_amount}</h3>
+                <h3>{location.state?.total_amount}</h3>
               </div>
               <hr className={styles.summaryprice}></hr>
               <div className={styles.summaryprice}>
                 <h3>เงินทอน(บาท):</h3>
-                <h3>{location.state.money - location.state.total_amount}</h3>
+                <h3>{location.state?.money - location.state?.total_amount}</h3>
               </div>
             </div>
 
@@ -130,7 +200,8 @@ const Receipt = function (props) {
           </div>
         </div>
       )}
-      {bill && location.state.payment_method === "QR" && (
+
+      {bill && location.state?.payment_method === "QR" && (
         <div className={styles.main}>
           <p className={styles.header}>ใบเสร็จรับเงิน</p>
           <div className={styles.toprightbox}>
@@ -164,6 +235,7 @@ const Receipt = function (props) {
           <hr></hr>
 
           {showItem()}
+          {/* <p className={styles.total_price}>ราคารวม</p> */}
 
           <br></br>
           <br></br>
